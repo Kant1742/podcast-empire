@@ -1,0 +1,42 @@
+body {
+    padding-bottom: 20px;
+}
+
+hr {
+    margin: 1em auto;
+    border: none;
+    height: 0.07em;
+
+    background: #777;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.podcast-image {
+    width: 15em;
+    height: 15em;
+}
+
+.episode-title {
+    padding: 10px;
+    font-weight: 500;
+}
+
+.podcast-title {
+    font-weight: 500;
+}
+
+.author {
+    font-size: x-small;
+}
+
+.category {
+    font-size: small;
+}
+
+.button-black {
+    background-color: #212529;
+    color: #fff;
+}
