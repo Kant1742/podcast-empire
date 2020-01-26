@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %}Register{% endblock title %}
-<!-- Created 'def register' in users:views.py,
-in users:forms.py 'UserRegisterForm' to have field 'email'
-in urls.py of the project added path 'register' -->
+{% block title %}Login{% endblock title %}
 
 {% block content %}
-    <h1>Register</h1><br>
-
+    <h1>Login</h1><br>
     <div class="container">
         <form action="." method="post">
             {% csrf_token %}
@@ -15,12 +11,12 @@ in urls.py of the project added path 'register' -->
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                <button class="btn btn-outline-info" type="submit">Login</button>
             </div>
         </form>
         <div class="border-top pt-3">
             <small class="text-muted">
-                Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                Need an account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
             </small>
         </div>
     </div>
