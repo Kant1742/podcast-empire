@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Episode, Podcast
 # Register your models here.
 
+
 @admin.register(Episode)
 class EpisodeAdmin(admin.ModelAdmin):
     list_display = ('title', 'image', 'podcast')
@@ -11,6 +12,7 @@ class EpisodeAdmin(admin.ModelAdmin):
 
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.image.url} width="100" height="100">')
+
 
 @admin.register(Podcast)
 class PodcastAdmin(admin.ModelAdmin):
@@ -25,3 +27,6 @@ class PodcastAdmin(admin.ModelAdmin):
 
 admin.site.site_title = "Podcast Empire"
 admin.site.site_header = 'Podcasts'
+
+# TODO I need to insert 'python manage.py collectstatic' for
+# using Grappelli properly

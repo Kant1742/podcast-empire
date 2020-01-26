@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -51,7 +51,7 @@
                     </ul>
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="#">Login</a>
-                        <a class="nav-item nav-link" href="#">Register</a>
+                        <a class="nav-item nav-link" href="/register">Register</a>
                     </div>
                     <form class="form-inline my-2 my-md-0">
                         <input class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -63,6 +63,13 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-9">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 {% block content %}{% endblock %}
             </div>
             <div class="col-md-3">
