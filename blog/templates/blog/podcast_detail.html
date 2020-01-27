@@ -5,16 +5,14 @@
 
 {% block content %}
 <div class="container">
+    <a class="podcast-title" href="{{ podcast.get_absolute_url }}">{{ object.title }}</a><br>
+    <p><img class="podcast-image" src="{{ object.image.url }}" alt="{{ object.image.url }}"></p>
     <div>
-        <a href="{{ podcast.get_absolute_url }}" class="podcast-title">{{ object.title }}</a><br>
-        <img class="podcast-image" src="{{ object.image.url }}" alt="{{ object.image.url }}">
-        <div class="container"><br>
-            <p class="author">Author: {{ object.author }}</p>
-            <p class="category"> Category: {{ object.category }}</p>
-            {{ object.description }}
-        </div>
-        <hr>
+        <p class="author">Author: {{ object.author }}</p>
+        <p class="category"> Category: {{ object.category }}</p>
+        <p class="article-content">{{ object.description }}</p> 
     </div>
+    <hr>
     <div>
         Episodes:
         {% for episode in object.podcast_episodes.all %}

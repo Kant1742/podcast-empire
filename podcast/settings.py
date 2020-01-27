@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'users',
     'crispy_forms',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [

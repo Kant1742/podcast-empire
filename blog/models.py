@@ -16,7 +16,7 @@ class Podcast(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     description = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to='podcast-images')
     author = models.CharField(max_length=100)
     prefix_url = models.CharField(max_length=40, blank=True)
     category = models.CharField(max_length=30,
@@ -46,7 +46,7 @@ class Episode(models.Model):
                                 related_name='podcast_episodes')
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True, upload_to='episode-images')
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)

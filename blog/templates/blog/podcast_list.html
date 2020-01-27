@@ -3,10 +3,14 @@
 {% block title %}List of our podcasts{% endblock title %}
 
 {% block content %}
-    <div class="container">
-        {% for podcast in podcasts %}
-            <a href="{{ podcast.get_absolute_url }}" class="podcast-title">{{ podcast.title }}</a>
-            <p><a href="{{ podcast.get_absolute_url }}"><img class="podcast-image" src="{{ podcast.image.url }}" alt="{{ object.image.url }}"> </a></p>
-        {% endfor %}
-    </div>
+    {% for podcast in podcasts %}
+        <div class="container">
+            <a class="podcast-title" href="{{ podcast.get_absolute_url }}">{{ podcast.title }}</a>
+            <p><a href="{{ podcast.get_absolute_url }}">
+                <img class="podcast-image" src="{{ podcast.image.url }}" alt="{{ podcast.image.url }}"></a></p>
+            <p class="author">Author: {{ podcast.author }}</p>
+            <p class="category"> Category: {{ podcast.category }}</p>
+            <p class="article-content">{{ podcast.description }}</p>
+        </div>
+    {% endfor %}
 {% endblock %}
