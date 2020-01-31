@@ -6,10 +6,11 @@ from .models import Episode, Podcast
 @admin.register(Episode)
 class EpisodeAdmin(admin.ModelAdmin):
     list_display = ('title', 'image', 'podcast')
-    list_filter = ('title',)
+    list_filter = ('podcast',)
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'publish'
 
+    # TODO. Doesn't work
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.image.url} width="100" height="100">')
 
@@ -21,6 +22,7 @@ class PodcastAdmin(admin.ModelAdmin):
     search_fields = ('title', 'category')
     prepopulated_fields = {'slug': ('title',)}
 
+    # Doesn't work
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.image.url} width="100" height="100">')
 
@@ -28,5 +30,4 @@ class PodcastAdmin(admin.ModelAdmin):
 admin.site.site_title = "Podcast Empire"
 admin.site.site_header = 'Podcasts'
 
-# TODO I need to insert 'python manage.py collectstatic' for
-# using Grappelli properly
+

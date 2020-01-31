@@ -11,7 +11,7 @@ class PublishedManager(models.Manager):
 class Podcast(models.Model):
     STATUS_CHOICES = (
         ('music', 'Music'),
-        ('art', 'Art') # And so on...
+        ('art', 'Art')  # And so on...
     )
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
@@ -33,7 +33,7 @@ class Podcast(models.Model):
         return reverse('blog:podcast_detail',
                        kwargs={'slug': self.slug})
 
- 
+
 class Episode(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -46,7 +46,9 @@ class Episode(models.Model):
                                 related_name='podcast_episodes')
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    image = models.ImageField(blank=True, upload_to='episode-images')
+    image = models.ImageField(blank=True,
+                              upload_to='episode-images',
+                              default='Django.jpg')
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)

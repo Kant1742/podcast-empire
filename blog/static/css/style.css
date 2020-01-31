@@ -41,6 +41,11 @@ hr {
     color: #fff;
 }
 
+.button-black-faded {
+    background-color: rgba(33, 37, 41, 0.5);
+    color: #fff;
+}
+
 .account-img {
     height: 125px;
     width: 125px;

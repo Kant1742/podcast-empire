@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ episode.title }}{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+   {% if episode.image %}
+    <img class="square article-img" src="{{ episode.image.url }}">
+  {% else %}
+    <img class="square article-img" src="{{ episode.podcast.image.url }}">
+  {% endif %}
+    <a class="podcast-title" href="{{ episode.get_absolute_url }}">{{ episode.title }}</a><br>
+    <div>
+        <p class="author">Author: {{ podcast.author }}</p>
+        <p class="category"> Category: {{ podcast.category }}</p>
+        <p class="article-content">{{ episode.description }}</p> 
+    </div>
+    <hr>
+    <!-- Similar episodes: -->
+</div>
+{% endblock %}
