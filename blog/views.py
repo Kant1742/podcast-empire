@@ -20,11 +20,9 @@ class PodcastEpisodesDetailView(DetailView, MultipleObjectMixin):
     object_list = Episode.objects.filter()
     paginate_by = 2
 
-    # Will change it
-    # def get_context_data(self, **kwargs):
-    #     object_list = Episode.objects.filter()
-    #     context = super().get_context_data(
-    #         object_list=object_list, **kwargs)
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args, **kwargs)
+    #     context['category'] = Podcast.objects.all()
     #     return context
 
 
@@ -32,6 +30,7 @@ class EpisodeListView(ListView):
     queryset = Episode.published.all()
     ordering = ['-publish']
     paginate_by = 2
+
 
 
 class EpisodeDetailView(DetailView):
