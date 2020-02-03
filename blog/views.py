@@ -14,16 +14,43 @@ class PodcastListView(ListView):
     context_object_name = 'podcasts'
 
 
-class PodcastEpisodesDetailView(DetailView, MultipleObjectMixin):
-    model = Podcast
-    template_name = 'blog/podcast_episodes.html'
-    object_list = Episode.objects.filter()
-    paginate_by = 2
+# class PodcastEpisodesDetailView(ListView, MultipleObjectMixin):
+#     model = Episode
+#     template_name = 'blog/podcast_episodes.html'
+#     # object_list = Podcast.objects.all()
+#     paginate_by = 2
 
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super().get_context_data(*args, **kwargs)
-    #     context['category'] = Podcast.objects.all()
-    #     return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['episode'] = self.model.objects.filter(
+#             podcast__slug__exact=self.kwargs['slug']).order_by('-publish')
+#         return context
+
+
+# class PodcastEpisodesDetailView(DetailView, MultipleObjectMixin):
+#     model = Podcast
+#     template_name = 'blog/podcast_episodes.html'
+#     object_list = Episode.published.all()
+#     # Fuck. Doesn't work properly with pagination
+#     paginate_by = 5
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['object_list'] = Episode.objects.filter(
+#             podcast__slug__exact=self.kwargs['slug']
+#         )
+#         return context
+
+
+# Not the worst decision.
+class PodcastEpisodesDetailView(ListView):
+    model = Episode
+    template_name = 'blog/podcast_episodes.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return self.model.objects.all().filter(
+            podcast__slug__exact=self.kwargs['slug']).order_by('-publish')
 
 
 class EpisodeListView(ListView):
@@ -32,13 +59,12 @@ class EpisodeListView(ListView):
     paginate_by = 2
 
 
-
 class EpisodeDetailView(DetailView):
     model = Episode
     context_object_name = 'episode'
 
-    # Shitty way, but here we are. Receiving 2 slugs in the urls and
-    # in the template doesn't work in the way I tried
+    # Another shitty way, but here we are. Receiving 2 slugs in
+    # the urls and in the template doesn't work in the way I tried
     def get(self, request, episode_slug, podcast_slug):
         episode = get_object_or_404(Episode, slug=episode_slug)
         podcast = get_object_or_404(Podcast, slug=podcast_slug)

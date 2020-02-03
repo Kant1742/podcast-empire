@@ -10,8 +10,22 @@ class PublishedManager(models.Manager):
 
 class Podcast(models.Model):
     STATUS_CHOICES = (
-        ('music', 'Music'),
-        ('art', 'Art')  # And so on...
+        ('Art', 'Art'),
+        ('Business', 'Business'),
+        ('Comedy', 'Comedy'),
+        ('Education', 'Education'),
+        ('Games & Hobbies', 'Games & Hobbies'),
+        ('Government & Organizations', 'Government & Organizations'),
+        ('Health', 'Health'),
+        ('Kids & Family', 'Kids & Family'),
+        ('Music', 'Music'),
+        ('News & Politics', 'News & Politics'),
+        ('Religion & Spirituality', 'Religion & Spirituality'),
+        ('Science & Medicine', 'Science & Medicine'),
+        ('Society & Culture', 'Society & Culture'),
+        ('Sports & Recreation', 'Sports & Recreation'),
+        ('Technology', 'Technology'),
+        ('TV & Film', 'TV & Film'),
     )
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
@@ -64,7 +78,7 @@ class Episode(models.Model):
     file = models.FileField(upload_to='files')
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-publish',)
 
     def __str__(self):
         return self.title

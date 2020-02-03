@@ -1,6 +1,19 @@
 from django.contrib import admin
-from .models import Episode, Podcast
+from django import forms
 from django.utils.safestring import mark_safe
+from django.contrib import admin
+
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
+from .models import Episode, Podcast
+
+# In a template has to use filter 'safe' for a description
+class EpisodeAdminForm(forms.ModelForm):
+    description = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Episode
+        fields = '__all__'
 
 
 @admin.register(Episode)
@@ -17,6 +30,7 @@ class EpisodeAdmin(admin.ModelAdmin):
     save_as = True
     save_on_top = True
     list_editable = ('status', 'publish')
+    form = EpisodeAdminForm
 
     fieldsets = (
         ('Main', {
@@ -29,7 +43,7 @@ class EpisodeAdmin(admin.ModelAdmin):
             "fields": ("image", "get_image", 'file')
         }),
         ("Options", {
-            "fields": (('publish',),("slug", "status", 'active',),)
+            "fields": (('publish',), ("slug", "status", 'active',),)
         }),
     )
 
