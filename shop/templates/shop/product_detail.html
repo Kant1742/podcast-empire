@@ -1,0 +1,15 @@
+{% extends 'basic.html' %}
+{% block title %}Buy {{ object.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div>
+        <a class="podcast-title" href="{{ object.get_absolute_url }}">{{ object.title }}</a><br>
+        <img src="{{ object.image.url }}">
+        <p class="category"> Category: {{ object.category }}</p>
+        <p class="article-content">{{ object.description|safe }}</p> 
+     </div>
+     <hr>
+     <!-- Similar products: -->
+ </div>
+{% endblock content %}

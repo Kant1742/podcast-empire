@@ -1,11 +1,11 @@
 {% load static %}
-{% load episode_tag %}
+{% load shop_tags %}
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Podcast Empire{% endblock title %}</title>
+    <title>{% block title %}Shop{% endblock title %}</title>
 
     <!-- Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,19 +35,29 @@
                             <a class="nav-link" href="/episodes/">All episodes</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/shop/">Shop</a>
+                            <a class="nav-link" href="{% url 'shop:product_list' %}">Shop</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link disabled" href="#">Disabled</a>
                         </li> -->
-                        <li class="nav-item dropdown">
+
+                        <!-- Categories -->
+                        <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown07"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown07">
-                                <a class="dropdown-item" href="/">Podcasts</a>
-                                <a class="dropdown-item" href="#">Statistics</a>
-                                <a class="dropdown-item" href="https://t.me/kant1742" target=True>Contact us</a>
+                                {% get_categories as categories %}
+                                {% for category in categories %}
+                                    <a class="dropdown-item" href="/"><img class="square article-img" src="{{ category.image.url }}" alt="{{ category.name }}">{{ category.name }}</a>
+                                {% endfor %}
                             </div>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Statistics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" href="https://t.me/kant1742">Contact us</a>
                         </li>
                     </ul>
                     <div class="navbar-nav">
@@ -78,18 +88,7 @@
                 {% endif %}
                 {% block content %}{% endblock %}
             </div>
-            <div class="col-md-3">
-                <div class="content-section">
-                    <p class='text-muted'>
-                        <ul class="list-group">
-                            <li class="list-group-item">Last episodes: </li>
-                            <li class="list-group-item list-group-item-light">{% get_last_episodes count=3 %}</li>
-                            <a href="#"><li class="list-group-item list-group-item-light">You may like</li></a>
-                            <a href="#"><li class="list-group-item list-group-item-light">Calendars</li></a>
-                        </ul>
-                    </p>
-                </div>
-            </div>
+            {% get_last_products %}
         </div>
     </main>
 

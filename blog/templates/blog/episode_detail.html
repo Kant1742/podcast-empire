@@ -12,8 +12,7 @@
   {% endif %}
     <a class="podcast-title" href="{{ episode.get_absolute_url }}">{{ episode.title }}</a><br>
     <div>
-        <p class="author">Author: {{ podcast.author }}</p>
-        <p class="category"> Category: {{ podcast.category }}</p>
+        <p class="category"> Category: {{ object.category.name }}</p>
         <p class="article-content">{{ episode.description|safe }}</p> 
     </div>
     <hr>

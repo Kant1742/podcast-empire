@@ -1,0 +1,16 @@
+{% extends 'basic.html' %}
+{% block title %}Shop{% endblock %}
+
+{% block content %}
+
+{% for product in object_list %}
+<div class="media-body">
+    <div class="article-metadata">
+        <h2><a class="article-title" href="{% url 'shop:product_detail' product.slug %}">{{ product.title }}</a></h2>
+        <img class="article-img" src="{{ product.image.url }}" alt="{{ product.title }}">
+        {{ product.price }}
+        <p class="article-content">{{ product.description|truncatewords:25|safe }}</p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

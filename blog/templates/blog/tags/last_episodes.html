@@ -6,5 +6,5 @@
         <img class="square article-img" src="{{ episode.podcast.image.url }}">
     {% endif %}
         <a class="article-title" href="{% url 'blog:episode_detail' podcast_slug=episode.podcast.slug episode_slug=episode.slug %}">{{ episode.title }}</a> <hr>
-    </div>
+</div>
 {% endfor %}

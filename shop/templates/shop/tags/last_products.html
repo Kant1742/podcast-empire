@@ -1,0 +1,19 @@
+<div class="col-md-3">
+    <div class="content-section">
+        <p class='text-muted'>
+            <ul class="list-group">
+                <li class="list-group-item">Recently added: </li>
+                {% for product in last_products %}
+                    <div class="media-body list-group-item">
+                        <div class="article-title">
+                            <a href="{% url 'shop:product_detail' product.slug %}"><img class="square article-img" src="{{ product.image.url }}" alt="{{ product.title }}"></a>
+                            <a href="{% url 'shop:product_detail' product.slug %}">{{ product.title }}</a>
+                            <p>Price - ${{ product.price }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- <a href="#"><li class="list-group-item list-group-item-light">Calendars</li></a> -->
+            </ul>
+        </p>
+    </div>
+</div>

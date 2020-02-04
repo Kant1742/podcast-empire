@@ -11,11 +11,10 @@ class Profile(models.Model):
     # likes
     # history
 
-    # playlists (ForeignKey)
+    # playlists
 
     def __str__(self):
         return f'{self.user.username} Profile'
-
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -26,4 +25,3 @@ class Profile(models.Model):
             output_size = (400, 400)
             img.thumbnail(output_size)
             img.save(self.image.path)
-
