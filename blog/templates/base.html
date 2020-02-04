@@ -1,4 +1,5 @@
 {% load static %}
+{% load episode_tag %}
 <!DOCTYPE html>
 <html>
 
@@ -79,13 +80,13 @@
             </div>
             <div class="col-md-3">
                 <div class="content-section">
-                    <h3>Podcasts</h3>
-                    <p class='text-muted'>Listen related podcasts
-                    <ul class="list-group">
-                        <a href="#"><li class="list-group-item list-group-item-light">Latest Episodes</li></a>
-                        <a href="#"><li class="list-group-item list-group-item-light">You may like</li></a>
-                        <a href="#"><li class="list-group-item list-group-item-light">Calendars</li></a>
-                    </ul>
+                    <p class='text-muted'>
+                        <ul class="list-group">
+                            <li class="list-group-item">Last episodes: </li>
+                            <a href="{{ episode.get_absolute_url }}"><li class="list-group-item list-group-item-light">{% get_last_episodes count=3 %}</li></a>
+                            <a href="#"><li class="list-group-item list-group-item-light">You may like</li></a>
+                            <a href="#"><li class="list-group-item list-group-item-light">Calendars</li></a>
+                        </ul>
                     </p>
                 </div>
             </div>

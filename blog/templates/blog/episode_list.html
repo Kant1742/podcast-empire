@@ -5,7 +5,6 @@
 {% block content %}
   {% for episode in object_list %}
   <article class="media content-section">
-    <!-- Or episode.podcast.image.url for all episodes? -->
     {% if episode.image %}
       <img class="square article-img" src="{{ episode.image.url }}">
     {% else %}

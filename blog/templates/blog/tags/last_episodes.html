@@ -1,0 +1,10 @@
+{% for episode in last_episodes %}
+<div class="media-body">
+    {% if episode.image %}
+        <img class="square article-img" src="{{ episode.image.url }}">
+    {% else %}
+        <img class="square article-img" src="{{ episode.podcast.image.url }}">
+    {% endif %}
+        <a class="article-title" href="{% url 'blog:episode_detail' podcast_slug=episode.podcast.slug episode_slug=episode.slug %}">{{ episode.title }}</a> <hr>
+    </div>
+{% endfor %}
