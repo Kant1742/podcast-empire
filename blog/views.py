@@ -14,19 +14,6 @@ class PodcastListView(ListView):
     context_object_name = 'podcasts'
 
 
-# class PodcastEpisodesDetailView(ListView, MultipleObjectMixin):
-#     model = Episode
-#     template_name = 'blog/podcast_episodes.html'
-#     # object_list = Podcast.objects.all()
-#     paginate_by = 2
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['episode'] = self.model.objects.filter(
-#             podcast__slug__exact=self.kwargs['slug']).order_by('-publish')
-#         return context
-
-
 # class PodcastEpisodesDetailView(DetailView, MultipleObjectMixin):
 #     model = Podcast
 #     template_name = 'blog/podcast_episodes.html'
@@ -42,21 +29,38 @@ class PodcastListView(ListView):
 #         return context
 
 
-# Not the worst decision.
-class PodcastEpisodesDetailView(ListView):
-    model = Episode
+class PodcastEpisodesDetailView(DetailView):
+    model = Podcast
     template_name = 'blog/podcast_episodes.html'
-    paginate_by = 5
+    # paginate_by = 2
 
-    def get_queryset(self):
-        return self.model.objects.all().filter(
-            podcast__slug__exact=self.kwargs['slug']).order_by('-publish')
+
+# Not the worst decision.
+# class PodcastEpisodesDetailView(ListView):
+#     model = Episode
+#     template_name = 'blog/podcast_episodes.html'
+#     paginate_by = 5
+
+#     def get_queryset(self):
+#         return self.model.objects.all().filter(
+#             podcast__slug__exact=self.kwargs['slug']).order_by('-publish')
+
+
+# Fuck
+# class PodcastEpisodesDetailView(ListView):
+#     template_name = 'blog/podcast_episodes.html'
+#     paginate_by = 2
+
+#     def get_queryset(self, *args, **kwargs):
+#         podcast = Podcast.objects.filter(podcast_episodes__slug=self.request.GET.get('slug'))
+#         queryset = super(PodcastEpisodesDetailView, self).get_queryset(*args, **kwargs)
+#         return queryset
 
 
 class EpisodeListView(ListView):
     queryset = Episode.published.all()
     ordering = ['-publish']
-    paginate_by = 2
+    paginate_by = 10
 
 
 class EpisodeDetailView(DetailView):

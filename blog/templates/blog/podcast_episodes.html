@@ -5,8 +5,9 @@
 {% block content %}
 <h1>{{ podcast.title }}</h1> <hr>
 
-{% for episode in object_list %}
+{% for episode in podcast.podcast_episodes.all %}
     <article class="media content-section">
+      {{ podcast.episode.title }}
       <!-- Or episode.podcast.image.url for all episodes? -->
       {% if episode.image %}
         <img class="square article-img" src="{{ episode.image.url }}">
