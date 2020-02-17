@@ -1,14 +1,19 @@
 {% extends 'basic.html' %}
-{% block title %}Buy {{ object.title }}{% endblock %}
+{% block title %}Buy {{ product.name }}{% endblock %}
 
 {% block content %}
 <div class="container">
     <div>
-        <a class="podcast-title" href="{{ object.get_absolute_url }}">{{ object.title }}</a><br>
-        <img src="{{ object.image.url }}">
-        <p class="category"> Category: {{ object.category }}</p>
-        <p class="article-content">{{ object.description|safe }}</p> 
+        <a class="podcast-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+        <img src="{{ product.image.url }}">
+        <p class="category"> Category: {{ product.category }}</p>
+        <p class="article-content">{{ product.description|safe }}</p> 
      </div>
+     <form action="{% url 'cart:cart_add' product.slug %}" method="post">
+         {{ cart_product_form }}
+         {% csrf_token %}
+         <input type="submit" value="Add to cart">
+     </form>
      <hr>
      <!-- Similar products: -->
  </div>
