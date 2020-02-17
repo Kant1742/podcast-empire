@@ -1,7 +1,6 @@
-from django.contrib import admin
 from django import forms
-from django.utils.safestring import mark_safe
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
@@ -91,9 +90,9 @@ class EpisodeAdmin(admin.ModelAdmin):
     make_published.short_description = ('Publish')
 
 
-class EpisodeInLine(admin.TabularInline):
+class EpisodeInline(admin.TabularInline):
     model = Episode
-    extra = 1
+    extra = 0
     readonly_fields = ('get_image',)
 
     fieldsets = (
@@ -135,7 +134,7 @@ class PodcastAdmin(admin.ModelAdmin):
     search_fields = ('title', 'category')
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ('get_image', )
-    inlines = [EpisodeInLine]
+    inlines = [EpisodeInline]
     save_on_top = True
 
     def get_image(self, obj):

@@ -1,16 +1,66 @@
 {% extends 'basic.html' %}
+{% load static %}
 {% block title %}Shop{% endblock %}
 
 {% block content %}
-
-{% for product in object_list %}
-<div class="media-body">
-    <div class="article-metadata">
-        <h2><a class="article-title" href="{% url 'shop:product_detail' product.slug %}">{{ product.title }}</a></h2>
-        <img class="article-img" src="{{ product.image.url }}" alt="{{ product.title }}">
-        {{ product.price }}
-        <p class="article-content">{{ product.description|truncatewords:25|safe }}</p>
-    </div>
+<div class="section-top">
+    <!-- I know. Shitty -->
+    <img src="../../../media/Django.jpg" width="100%">
 </div>
-{% endfor %}
+<div class="section section1">
+    <h1 class="text-center">
+        Recently added  
+    </h1>
+    <div class="container">
+        <div class="row">
+            {% for product in object_list %}
+            <div class="col-lg-3">
+                <div class="product-item">
+                    <h4><a class="article-title" href="{% url 'shop:product_detail' product.slug %}">{{ product.name }}</a></h4>
+                    <div class="image-responsive">
+                        <img class="article-img-list" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <div>
+                            ${{ product.price }}
+                        </div>
+                    </div>
+                    <p class="article-content">{{ product.description|truncatechars_html:35|safe }}</p>
+                    <div class="add-to-card-btn">
+                        <button class="btn btn-info">
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}        
+        </div>
+    </div>
+</div><hr>
+<div class="section section1">
+    <h1 class="text-center">
+        Popular 
+    </h1>
+    <div class="container">
+        <div class="row">
+            {% for product in object_list %}
+            <div class="col-lg-3">
+                <div class="product-item">
+                    <h4><a class="article-title" href="{% url 'shop:product_detail' product.slug %}">{{ product.name }}</a></h4>
+                    <div class="image-responsive">
+                        <img class="article-img-list" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <div>
+                            ${{ product.price }}
+                        </div>
+                    </div>
+                    <p class="article-content">{{ product.description|truncatechars_html:35|safe }}</p>
+                    <div class="add-to-card-btn">
+                        <button class="btn btn-info">
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}        
+        </div>
+    </div>
+</div><hr>
 {% endblock %}
