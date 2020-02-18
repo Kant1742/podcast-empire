@@ -41,6 +41,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('shop/', include('shop.urls', namespace='shop')),
+    path('orders/', include('orders.urls', namespace='orders')),
     path('', include('blog.urls', namespace='podcast')),
 ]
 

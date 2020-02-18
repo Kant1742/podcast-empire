@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'shop',
     'cart',
+    'orders',
     'users',
     'crispy_forms',
     'django_cleanup',

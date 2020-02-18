@@ -87,6 +87,7 @@ class ProductImage(models.Model):
     def __str__(self):
         return self.product.name
 
+"""
 # Or use choices?
 class Status(models.Model):
     name = models.CharField(max_length=24, blank=True, null=True, default=None)
@@ -100,7 +101,6 @@ class Status(models.Model):
     class Meta:
         verbose_name = 'Status'
         verbose_name_plural = 'Statuses'
-
 
 class Order(models.Model):
     # total price for all products in order
@@ -166,3 +166,4 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
 
 
 post_save.connect(product_in_order_post_save, sender=ProductInOrder)
+"""

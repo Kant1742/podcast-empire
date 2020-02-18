@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from .models import (
-    Category, Order, Product, ProductInOrder, Status, ProductImage)
+    Category, Product, ProductImage)
 
 
 class ProductAdminForm(forms.ModelForm):
@@ -65,6 +65,6 @@ class ProductAdmin(admin.ModelAdmin):
     get_image.short_description = "Product Image"
 
 
-admin.site.register(ProductInOrder)
-admin.site.register(Order)
-admin.site.register(Status)
+# admin.site.register(ProductInOrder)
+# admin.site.register(Order)
+# admin.site.register(Status)
