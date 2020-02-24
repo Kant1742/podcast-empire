@@ -58,7 +58,7 @@ class PodcastEpisodesDetailView(DetailView):
 
 
 class EpisodeListView(ListView):
-    queryset = Episode.published.all()
+    queryset = Episode.published.all() #.only('podcast', 'title', 'image', 'description')
     ordering = ['-publish']
     paginate_by = 10
 
