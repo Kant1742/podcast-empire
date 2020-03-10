@@ -24,7 +24,7 @@ class Cart(object):
         for item in cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['quantity']
-        yield item
+            yield item
 
     def __len__(self):
         """Return total quantity of objects in a cart"""
@@ -43,7 +43,7 @@ class Cart(object):
         self.save()
 
     def save(self):
-            # Mark a session as updated
+        # Mark a session as updated
         self.session.modified = True
 
     def remove(self, product):

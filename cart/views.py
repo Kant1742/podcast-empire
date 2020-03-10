@@ -19,12 +19,27 @@ def cart_add(request, product_slug):
                  update_quantity=cd['update'])
     return redirect('cart:cart_detail')
 
+# class CartAdd():
+#     model = Cart
+#     form = CartAddProductForm()
+
+#     def get_context_data(self, product_slug, *args, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['product'] = get_object_or_404(Product, slug=product_slug)
+#         return context
+
+#     def form_valid(self, form):
+#         cd = form.cleaned_data
+
 
 def cart_remove(request, product_slug):
     cart = Cart(request)
     product = get_object_or_404(Product, slug=product_slug)
     cart.remove(product)
-    return redirect('cart:cart_detail')
+    if cart:
+        return redirect('cart:cart_detail')
+    else:
+        return redirect('shop/')
 
 
 def cart_detail(request):

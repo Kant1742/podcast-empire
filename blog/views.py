@@ -9,6 +9,8 @@ from .models import Episode, Podcast
 from .forms import PodcastCreateForm
 
 
+# Tried to use Django Silk. Looks terrible.
+
 class PodcastListView(ListView):
     model = Podcast
     context_object_name = 'podcasts'

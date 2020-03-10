@@ -8,13 +8,11 @@
   <div>
     <img src="{{ podcast.image.url }}" alt="{{ podcast.title }}" width="100" height="100">
     <div>
-
       {{ podcast.description }}
     </div>
   </div>
   <hr>
 </div>
-
 
 
 {% for episode in podcast.podcast_episodes.all %}
