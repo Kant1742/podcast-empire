@@ -6,6 +6,8 @@ from .models import Product, Category
 
 class ProductListView(ListView):
     model = Product
+    form = CartAddProductForm()
+
     # paginate_by = 10
 
     # A simple expample of get_context_data.

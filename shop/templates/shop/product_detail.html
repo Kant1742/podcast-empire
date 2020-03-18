@@ -12,7 +12,7 @@
      <form action="{% url 'cart:cart_add' product.slug %}" method="post">
          {{ cart_product_form }}
          {% csrf_token %}
-         <input type="submit" value="Add to cart">
+         <input class="btn btn-info" type="submit" value="Add to cart">
      </form>
      <hr>
      <!-- Similar products: -->

@@ -1,6 +1,5 @@
 {% extends 'basic.html' %}
 {% load static %}
-{% block title %}Shop{% endblock %}
 
 {% block content %}
 <div class="section-top">
@@ -25,9 +24,11 @@
                     </div>
                     <p class="article-content">{{ product.description|truncatechars_html:35|safe }}</p>
                     <div class="add-to-card-btn">
-                        <button class="btn btn-info">
-                            Add to cart
-                        </button>
+                        <form action="{% url 'cart:cart_add' product.slug %}" method="post">
+                            {{ cart_product_form }}
+                            {% csrf_token %}
+                            <input class="btn btn-info" type="submit" value="Add to cart">
+                        </form>
                     </div>
                 </div>
             </div>
