@@ -36,10 +36,7 @@ def cart_remove(request, product_slug):
     cart = Cart(request)
     product = get_object_or_404(Product, slug=product_slug)
     cart.remove(product)
-    if cart:
-        return redirect('cart:cart_detail')
-    else:
-        return redirect('shop/')
+    return redirect('cart:cart_detail')
 
 
 def cart_detail(request):
