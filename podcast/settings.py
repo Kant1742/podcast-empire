@@ -37,16 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third Party
     'silk',
+    'crispy_forms',
+    'django_cleanup',
+    'ckeditor',
+    'ckeditor_uploader',
+
+    # local
     'blog',
     'shop',
     'cart',
     'orders',
     'users',
-    'crispy_forms',
-    'django_cleanup',
-    'ckeditor',
-    'ckeditor_uploader',
+    'coupons', 
 ]
 
 MIDDLEWARE = [

@@ -39,6 +39,7 @@ urlpatterns = [
          name='password_reset_complete'
          ),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('coupons', include('coupons.urls', namespace='coupons')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('shop/', include('shop.urls', namespace='shop')),
     path('orders/', include('orders.urls', namespace='orders')),
