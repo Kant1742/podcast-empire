@@ -17,28 +17,7 @@ class ProductListView(ListView):
     #     data['page_title'] = 'Authors'
     #     return data
 
-    # def get_context_data(self, *args, **kwargs):
-    #     product_images = ProductImage.objects.all()
-    #     products = Product.objects.filter(is_active=True)
-    #     context = super().get_context_data(*args, **kwargs)
-    #     context['prod_image'] = product_images.filter(is_main=True, product=get_object_or_404(ProductImage, product_images))
-    #     return context
 
-    # def get_context_data(self, *args, category_slug=None, **kwargs):
-    #     category = None
-    #     categories = Category.objects.all()
-    #     products = Product.objects.filter(is_active=True)
-    #     context = super().get_context_data(*args, **kwargs)
-    #     if category_slug:
-    #         context['category'] = get_object_or_404(
-    #             Category, slug=category_slug)
-    #         context['products'] = products.filter(category=context['category'])
-    #     return context
-
-
-# class ProductDetailView(DetailView):
-#     model = Product
-#     form = CartAddProductForm
 
 def product_detail(request, slug):
     product = get_object_or_404(Product,

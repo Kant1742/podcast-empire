@@ -53,8 +53,9 @@ class Episode(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
-    # To this podcast we have to refer in a opposite way.
-    # podcast.episode_set.all for example (?)
+    # To this podcast we have to refer in the opposite way.
+    # We do it from a podcast
+    # podcast.episode_set.all() by default or in other case related_name
     podcast = models.ForeignKey(Podcast,
                                 on_delete=models.CASCADE,
                                 related_name='podcast_episodes')
@@ -69,7 +70,7 @@ class Episode(models.Model):
     status = models.CharField(max_length=10,
                               choices=STATUS_CHOICES,
                               default='draft')
-    # Create schedule for posting
+    # TODO Create schedule for posting
     # Or make default publish time at 2:31 pm UTC+3
     publish = models.DateTimeField(default=timezone.now)
     objects = models.Manager()  # Default manager
