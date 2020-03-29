@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from PIL import Image
 
 
 class PublishedManager(models.Manager):
@@ -47,6 +48,16 @@ class Podcast(models.Model):
         return reverse('blog:podcast_detail',
                        kwargs={'slug': self.slug})
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 and img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
 
 class Episode(models.Model):
     STATUS_CHOICES = (
@@ -87,3 +98,13 @@ class Episode(models.Model):
     def get_absolute_url(self, podcast):
         return reverse('blog:episode_detail',
                        kwargs={'slug': self.slug})
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 and img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)

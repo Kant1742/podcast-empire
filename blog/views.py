@@ -24,10 +24,12 @@ class PodcastEpisodesDetailView(DetailView):
 
 # Not the worst decision.
 class EpisodeListView(ListView):
-    queryset = Episode.published.select_related('podcast')# .only('podcast',
+    queryset = Episode.published.select_related('podcast') # .only('podcast',
                                                                 # 'title',
                                                                 # 'image',
                                                                 # 'description')
+    # .defer('title') is the opposite of .only()
+    # It returns everything except of 'title'.
     ordering = ['-publish']
     paginate_by = 10
 

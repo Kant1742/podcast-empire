@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.postgres',
+    'psycopg2',
+
     # Third Party
     # 'silk',
     'crispy_forms',
@@ -65,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'blog.middleware.LastEpisodes',
 ]
 
 ROOT_URLCONF = 'podcast.urls'
@@ -102,8 +106,12 @@ WSGI_APPLICATION = 'podcast.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'podcast_db',
+        'USER' : 'podcast_user',
+        'PASSWORD' : os.environ.get('PODCAST_PASSWORD'),
+        'HOST' : '127.0.0.1',
+        'PORT' : '5432',
     }
 }
 

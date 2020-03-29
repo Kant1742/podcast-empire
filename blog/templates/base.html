@@ -86,7 +86,12 @@
                     <p class='text-muted'>
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-dark">Last episodes: </li>
-                            <li class="list-group-item list-group-item-dark">{% get_last_episodes count=3 %}</li>
+                            <li class="list-group-item list-group-item-dark">
+                                {% for obj in request.episodes %}
+                                <p>{{ obj.title }}</p> 
+                                <p><img src="{{ obj.image.url }}" alt="no image" width="100px" height="100px"></p>
+                                {% endfor %}
+                            </li>
                             <a href="#">
                                 <li class="list-group-item list-group-item-dark">You may like</li>
                             </a>

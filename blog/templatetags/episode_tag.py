@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.inclusion_tag('blog/tags/last_episodes.html')
 def get_last_episodes(count=5):
-    episodes = Episode.objects.order_by('id')[:count].only('image', 'title')
+    episodes = Episode.objects.order_by('id')[:count].only('title')
 
     # img = Image.open(image.path)
 

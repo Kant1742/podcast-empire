@@ -70,6 +70,16 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('shop:product_detail',
                        kwargs={'slug': self.slug})
+        
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 and img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
 class ProductImage(models.Model):
@@ -86,6 +96,16 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return self.product.name
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 and img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 """
 # Or use choices?
