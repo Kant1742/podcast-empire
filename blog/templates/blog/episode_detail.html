@@ -11,6 +11,7 @@
     <img class="square article-img" src="{{ episode.podcast.image.url }}">
   {% endif %}
   <a class="podcast-title" href="{{ episode.get_absolute_url }}">{{ episode.title }}</a><br><br>
+  <p class="tags">Tags: {{ episode.tags.all|join:", " }}</p>
   <a class="podcast-title" href="{{ episode.podcast.get_absolute_url }}">Podcast: {{ episode.podcast.title }}</a><br>
   <p class="article-content">{{ episode.description|safe }}</p> 
   <hr>

@@ -13,6 +13,7 @@
       <div class="media-body">
         <div class="article-metadata">
           <a class="mr-2" href="{% url 'blog:podcast_detail' episode.podcast.slug %}">Podcast: {{ episode.podcast.title }}</a>
+          <p class="tags">Tags: {{ episode.tags.all|join:", " }}</p>
       </div>
       <h2><a class="article-title" href="{% url 'blog:episode_detail' podcast_slug=episode.podcast.slug episode_slug=episode.slug %}">{{ episode.title }}</a></h2>
       <small class="text-muted">{{ episode.publish }}</small><br><br>

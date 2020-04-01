@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Third Party
     # 'silk',
+    'taggit',
     'crispy_forms',
     'django_cleanup',
     'ckeditor',

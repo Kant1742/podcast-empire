@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import (
-    View, DetailView, ListView, CreateView
+    DetailView,
+    ListView,
 )
 from django.views.generic.list import MultipleObjectMixin
 from django.contrib import messages
@@ -19,10 +20,8 @@ class PodcastListView(ListView):
 class PodcastEpisodesDetailView(DetailView):
     model = Podcast
     template_name = 'blog/podcast_episodes.html'
-    # paginate_by = 2
 
 
-# Not the worst decision.
 class EpisodeListView(ListView):
     queryset = Episode.published.select_related('podcast') # .only('podcast',
                                                                 # 'title',
@@ -35,16 +34,10 @@ class EpisodeListView(ListView):
 
 
 class EpisodeDetailView(DetailView):
-    model = Episode
-    context_object_name = 'episode'
+    # model = Episode
 
     def get(self, request, episode_slug, podcast_slug):
-        # Reverse relationships. The lovercase name of the model inside the parentheses.
-        # Podcast.objects.filter(episode__status__contains='Published')
-        episode = Episode.objects.select_related('podcast').get(slug=episode_slug)
-        # Total: 759.04ms. 2-7.00 ms (16 queries)
-        podcast = get_object_or_404(Podcast, slug=podcast_slug)
+        episode = get_object_or_404(Episode, slug=episode_slug, podcast__slug=podcast_slug)
         return render(request,
                       'blog/episode_detail.html',
-                      {'episode': episode,
-                      'podcast': podcast})
+                      {'episode': episode})

@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+
+from taggit.managers import TaggableManager
 from PIL import Image
 
 
@@ -88,6 +90,7 @@ class Episode(models.Model):
     published = PublishedManager()  # New manager
     # downloads = models.IntegerField(blank=True, mull=True)
     file = models.FileField(upload_to='files')
+    tags = TaggableManager()
 
     class Meta:
         ordering = ('-publish',)

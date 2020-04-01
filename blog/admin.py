@@ -42,7 +42,7 @@ class EpisodeAdmin(admin.ModelAdmin):
             "fields": ("image", "get_image", 'file')
         }),
         ("Options", {
-            "fields": (('publish',), ("slug", "status", 'active',),)
+            "fields": (('publish',), ('tags', "slug", "status", 'active',),)
         }),
     )
 
