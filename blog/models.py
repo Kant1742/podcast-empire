@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
-
+# from easy_thumbnails.fields import ThumbnailerImageField
 from taggit.managers import TaggableManager
 from PIL import Image
 
@@ -34,6 +34,8 @@ class Podcast(models.Model):
     slug = models.SlugField(unique=True)
     description = models.TextField()
     image = models.ImageField(upload_to='podcast-images')
+    # ThumbnailerImageField(resize_source={ 'size': (300, 300), 'crop': 'scale' })
+    # And then use <img src="{{ img.img.url }}"> in a themplate
     author = models.CharField(max_length=100)
     prefix_url = models.CharField(max_length=40, blank=True)
     category = models.CharField(max_length=30,
@@ -50,6 +52,7 @@ class Podcast(models.Model):
         return reverse('blog:podcast_detail',
                        kwargs={'slug': self.slug})
 
+    # ThumbnailerImageField is another way
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 

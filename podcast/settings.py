@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'debug_toolbar',
+    'easy_thumbnails',
 
     # local
     'blog',
@@ -164,6 +165,30 @@ STATICFILES_DIRS = [STATIC_DIR]
 MEDIA_URL = '/media/'
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'small': {
+            'size': (100, 100),
+            'crop': 'scale',
+        },
+    },
+    'blog': {
+        'default': {
+            'size': (240, 240),
+            'crop': 'scale',
+        },
+    },
+    'shop': {
+        'default': {
+            'size': (300, 300),
+            'crop': 'scale',
+        },
+    }
+}
+
+# THUМВNAIL_MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# THUMBNAIL_MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 
 {% block title %}List of our podcasts{% endblock title %}
 
@@ -7,7 +8,7 @@
         <div class="container">
             <a class="podcast-title" href="{{ podcast.get_absolute_url }}">{{ podcast.title }}</a>
             <p><a href="{{ podcast.get_absolute_url }}">
-                <img class="podcast-image" src="{{ podcast.image.url }}" alt="{{ podcast.title }}"></a></p>
+                <img src="{{ podcast.image|thumbnail_url:'default' }}" alt="{{ podcast.title }}"></a></p>
             <p class="author">Author: {{ podcast.author }}</p>
             <p class="category"> Category: {{ podcast.category }}</p>
             <p class="article-content">{{ podcast.description }}</p><hr>
