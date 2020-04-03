@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 
 {% block title %}Episodes of the podcast{% endblock title %}
 
@@ -6,9 +7,9 @@
   {% for episode in object_list %}
   <article class="media content-section">
     {% if episode.image %}
-      <img class="square article-img" src="{{ episode.image.url }}">
+      <img class="square article-img" src="{{ episode.image|thumbnail_url:'default' }}">
     {% else %}
-      <img class="square article-img" src="{{ episode.podcast.image.url }}">
+      <img class="square article-img" src="{{ episode.podcast.image|thumbnail_url:'default' }}">
     {% endif %}
       <div class="media-body">
         <div class="article-metadata">

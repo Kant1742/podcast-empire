@@ -1,5 +1,4 @@
-{% load static %}
-{% load episode_tag %}
+{% load static episode_tag thumbnail %}
 <!DOCTYPE html>
 <html>
 
@@ -89,7 +88,7 @@
                             <li class="list-group-item list-group-item-dark">
                                 {% for obj in request.episodes %}
                                 <p>{{ obj.title }}</p> 
-                                <p><img src="{{ obj.image.url }}" alt="no image" width="100px" height="100px"></p>
+                                <p><img src="{{ obj.image|thumbnail_url:'small' }}" alt="no image"></p>
                                 {% endfor %}
                             </li>
                             <a href="#">
