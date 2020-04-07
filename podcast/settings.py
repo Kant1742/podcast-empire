@@ -63,15 +63,18 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     # 'silk.middleware.SilkyMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'blog.middleware.LastEpisodes',
 ]
+CACHE_MIDDLEWARE_SECONDS = 1800
 
 ROOT_URLCONF = 'podcast.urls'
 
@@ -102,7 +105,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'podcast.wsgi.application'
 
-
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#     }
+# }
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
