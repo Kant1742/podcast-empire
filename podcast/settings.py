@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Third Party
     # 'silk',
+    'rest_framework',
     'taggit',
     'crispy_forms',
     'django_cleanup',
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     'orders',
     'users',
     'coupons', 
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +126,11 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ]
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

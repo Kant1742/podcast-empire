@@ -33,7 +33,7 @@ class Podcast(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     description = models.TextField()
-    image = models.ImageField(upload_to='podcast-images')
+    image = models.ImageField(upload_to='podcast-images', null=True, blank=True)
     # ThumbnailerImageField(resize_source={ 'size': (300, 300), 'crop': 'scale' })
     # And then use <img src="{{ img.img.url }}"> in a themplate
     author = models.CharField(max_length=100)
