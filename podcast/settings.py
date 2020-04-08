@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Third Party
     # 'silk',
     'rest_framework',
+    'corsheaders',
     'taggit',
     'crispy_forms',
     'django_cleanup',
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     # 'silk.middleware.SilkyMiddleware',
     # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -76,6 +78,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'blog.middleware.LastEpisodes',
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://127.0.0.1:8000',
+]
+
 CACHE_MIDDLEWARE_SECONDS = 1800
 
 ROOT_URLCONF = 'podcast.urls'

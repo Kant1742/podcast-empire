@@ -1,9 +1,17 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.core.exceptions import ValidationError
+
 # from easy_thumbnails.fields import ThumbnailerImageField
 from taggit.managers import TaggableManager
 from PIL import Image
+
+# The other way is using FileExtensionValidator
+def validate_file_extension(value):
+    accepted_values = ('.mp3', 'wav', '.aac', '.wma', '.flac', '.alac')
+    if not value.name.endswith(accepted_values):
+        raise ValidationError(f'Supported formats: {accepted_values}.')
 
 
 class PublishedManager(models.Manager):
@@ -33,9 +41,13 @@ class Podcast(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     description = models.TextField()
-    image = models.ImageField(upload_to='podcast-images', null=True, blank=True)
+
     # ThumbnailerImageField(resize_source={ 'size': (300, 300), 'crop': 'scale' })
     # And then use <img src="{{ img.img.url }}"> in a themplate
+    image = models.ImageField(
+        upload_to='podcast-images', null=True, blank=True
+    )
+
     author = models.CharField(max_length=100)
     prefix_url = models.CharField(max_length=40, blank=True)
     category = models.CharField(max_length=30,
@@ -69,9 +81,6 @@ class Episode(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
-    # To this podcast we have to refer in the opposite way.
-    # We do it from a podcast
-    # podcast.episode_set.all() by default or in other case related_name
     podcast = models.ForeignKey(Podcast,
                                 on_delete=models.CASCADE,
                                 related_name='podcast_episodes')
@@ -92,7 +101,9 @@ class Episode(models.Model):
     objects = models.Manager()  # Default manager
     published = PublishedManager()  # New manager
     # downloads = models.IntegerField(blank=True, mull=True)
-    file = models.FileField(upload_to='files')
+    file = models.FileField(upload_to='files',
+                            validators=[validate_file_extension]
+                            )
     tags = TaggableManager()
 
     class Meta:
@@ -104,7 +115,7 @@ class Episode(models.Model):
     def get_absolute_url(self, podcast):
         return reverse('blog:episode_detail',
                        kwargs={'slug': self.slug})
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
