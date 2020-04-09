@@ -46,7 +46,8 @@ urlpatterns = [
     path('shop/', include('shop.urls', namespace='shop')),
     path('orders/', include('orders.urls', namespace='orders')),
 #     path('silk/', include('silk.urls', namespace='silk')),
-    path('api/', include('api.urls')),
+    path('api/v1/blog/', include('api.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('', include('blog.urls', namespace='podcast')),
 ]
 
