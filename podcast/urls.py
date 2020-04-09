@@ -45,9 +45,12 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
     path('shop/', include('shop.urls', namespace='shop')),
     path('orders/', include('orders.urls', namespace='orders')),
-#     path('silk/', include('silk.urls', namespace='silk')),
+    #     path('silk/', include('silk.urls', namespace='silk')),
     path('api/v1/blog/', include('api.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/rest-auth/', include('rest_auth.urls')),
+    path('api/v1/rest-auth/registration/',  # new
+         include('rest_auth.registration.urls')),
     path('', include('blog.urls', namespace='podcast')),
 ]
 
@@ -56,7 +59,7 @@ if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
-     ] + urlpatterns
+    ] + urlpatterns
 
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
