@@ -1,9 +1,20 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from blog.models import Podcast, Episode
+from taggit_serializer.serializers import (
+    TagListSerializerField,
+    TaggitSerializer
+)
 
 
-class BlogEpisodeSerializer(serializers.ModelSerializer):
+class StringSerializer(serializers.StringRelatedField):
+    def to_internal_value(self, value):
+        return value
+
+
+class BlogEpisodeSerializer(serializers.ModelSerializer, TaggitSerializer):
+    podcast = StringSerializer(many=False)
+    tags = TagListSerializerField()
 
     class Meta:
         model = Episode
@@ -11,6 +22,7 @@ class BlogEpisodeSerializer(serializers.ModelSerializer):
 
 
 class BlogPodcastSerializer(serializers.ModelSerializer):
+    podcast_episodes = BlogEpisodeSerializer(many=True)
 
     class Meta:
         model = Podcast

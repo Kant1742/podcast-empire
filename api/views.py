@@ -1,12 +1,14 @@
 from django.contrib.auth import get_user_model
-
-from rest_framework import generics, permissions, viewsets
+from django.contrib.auth.models import User
+from rest_framework import generics, permissions, viewsets, views
 
 from blog.models import Episode, Podcast
 from .permissions import IsOwnerOrReadOnly
-from .serializers import (BlogEpisodeSerializer,
-                          BlogPodcastSerializer,
-                          UserSerializer)
+from .serializers import (
+    BlogEpisodeSerializer,
+    BlogPodcastSerializer,
+    UserSerializer,
+)
 
 
 class BlogPodcastViewSet(viewsets.ModelViewSet):
