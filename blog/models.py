@@ -8,6 +8,8 @@ from taggit.managers import TaggableManager
 from PIL import Image
 
 # The other way is using FileExtensionValidator
+
+
 def validate_file_extension(value):
     accepted_values = ('.mp3', 'wav', '.aac', '.wma', '.flac', '.alac')
     if not value.name.endswith(accepted_values):
@@ -53,9 +55,9 @@ class Podcast(models.Model):
     category = models.CharField(max_length=30,
                                 choices=STATUS_CHOICES,
                                 default='music')
-    # subscribers = models.IntegerField(blank=True, null=True)
-    # downloads = models.IntegerField(blank=True, null=True)
-    rss = models.URLField(blank=True)
+    # subscribers = models.IntegerField(blank=True, null=True) # TODO ManyToManyField and another class?
+    downloads = models.IntegerField(blank=True, null=True) # TODO count total downloads from all episodes
+    rss = models.URLField(blank=True) # parser
 
     def __str__(self):
         return self.title
@@ -87,6 +89,7 @@ class Episode(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(blank=True,
+                              null=True,
                               upload_to='episode-images',
                               default='Django.jpg')
     description = models.TextField()
@@ -100,7 +103,7 @@ class Episode(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     objects = models.Manager()  # Default manager
     published = PublishedManager()  # New manager
-    # downloads = models.IntegerField(blank=True, mull=True)
+    downloads = models.IntegerField(blank=True, null=True) # TODO again count downloads/plays
     file = models.FileField(upload_to='files',
                             validators=[validate_file_extension]
                             )

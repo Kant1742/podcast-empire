@@ -1,0 +1,23 @@
+authentication (?)
+some optimisation (ORM, images) (Basic optimisation has been done)
+
+Features:
+    API (depricated)
+    shop
+    tags
+    cache
+    users
+    sending emails via celery (depricated right now)
+    middlewares, context processors, templatetags
+    basic tests
+    optimisation techniques
+    podcasts/episodes info
+
+In the production will contain at least:
+3    desigh (bootstrap 4)
+5    drag-and-drop (AJAX (?))
+2    music (in progress, not necessary) (?)
+3    full-text search
+2    rss parser
+4    paypal integration
+1    scheduled publication

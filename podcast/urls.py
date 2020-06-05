@@ -6,14 +6,14 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
-from rest_framework.documentation import include_docs_urls
-from rest_framework.schemas import get_schema_view
+# from rest_framework.documentation import include_docs_urls
+# from rest_framework.schemas import get_schema_view
 
 from users import views as user_views
 
-API_TITLE = 'Podcast API via CoreAPI'
-API_DESCRIPTION = 'Description'
-schema_view = get_schema_view(title='Podcast API')
+# API_TITLE = 'Podcast API via CoreAPI'
+# API_DESCRIPTION = 'Description'
+# schema_view = get_schema_view(title='Podcast API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -53,14 +53,14 @@ urlpatterns = [
     path('shop/', include('shop.urls', namespace='shop')),
     path('orders/', include('orders.urls', namespace='orders')),
     #     path('silk/', include('silk.urls', namespace='silk')),
-    path('api/v1/', include('api.urls')),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/rest-auth/', include('rest_auth.urls')),
-    path('api/v1/rest-auth/registration/',  # new
-         include('rest_auth.registration.urls')),
-    path('docs/', include_docs_urls(title=API_TITLE,
-                                    description=API_DESCRIPTION)),
-    path('schema/', schema_view),
+#     path('api/v1/', include('api.urls')),
+#     path('api-auth/', include('rest_framework.urls')),
+#     path('api/v1/rest-auth/', include('rest_auth.urls')),
+#     path('api/v1/rest-auth/registration/',  # new
+     #     include('rest_auth.registration.urls')),
+#     path('docs/', include_docs_urls(title=API_TITLE,
+                                   #  description=API_DESCRIPTION)),
+#     path('schema/', schema_view),
     path('', include('blog.urls', namespace='podcast')),
 ]
 
